@@ -1,0 +1,14 @@
+[
+{
+  "directory": "D:/Dev/c++/games/first-game/build/Debug",
+  "command": "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe -ID:/Dev/c++/games/first-game/engine/include -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o engine\\CMakeFiles\\engine.dir\\src\\main.c.obj -c D:\\Dev\\c++\\games\\first-game\\engine\\src\\main.c",
+  "file": "D:\\Dev\\c++\\games\\first-game\\engine\\src\\main.c",
+  "output": "engine\\CMakeFiles\\engine.dir\\src\\main.c.obj"
+},
+{
+  "directory": "D:/Dev/c++/games/first-game/build/Debug",
+  "command": "C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\Llvm\\x64\\bin\\clang.exe -ID:/Dev/c++/games/first-game/game/include -ID:/Dev/c++/games/first-game/engine/interface -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o game\\CMakeFiles\\game.dir\\src\\main.c.obj -c D:\\Dev\\c++\\games\\first-game\\game\\src\\main.c",
+  "file": "D:\\Dev\\c++\\games\\first-game\\game\\src\\main.c",
+  "output": "game\\CMakeFiles\\game.dir\\src\\main.c.obj"
+}
+]
