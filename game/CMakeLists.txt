@@ -6,7 +6,7 @@ file(GLOB_RECURSE SOURCES
     src/*.c
 )
 
-message(GAME_SOURCES="${SOURCES}")
+message(GAME_SOURCES=[${SOURCES}])
 
 # Make library
 add_executable(game ${SOURCES})

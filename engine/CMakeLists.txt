@@ -6,7 +6,7 @@ file(GLOB_RECURSE SOURCES
     src/*.c
 )
 
-message(ENGINE_SOURCES="${SOURCES}")
+message(ENGINE_SOURCES = [${SOURCES}])
 
 # Make library
 add_library(engine STATIC ${SOURCES})

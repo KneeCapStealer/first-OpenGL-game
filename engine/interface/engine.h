@@ -1,2 +1,2 @@
 
-void run();
+void run(void);

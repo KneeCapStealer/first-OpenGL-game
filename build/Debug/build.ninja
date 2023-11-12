@@ -121,8 +121,9 @@ build install/strip: phony CMakeFiles/install/strip.util
 build cmake_object_order_depends_target_engine: phony || engine/CMakeFiles/engine.dir
 
 build engine/CMakeFiles/engine.dir/src/main.c.obj: C_COMPILER__engine_unscanned_Debug D$:/Dev/c++/games/first-game/engine/src/main.c || cmake_object_order_depends_target_engine
+  DEFINES = -D_CRT_SECURE_NO_WARNINGS
   DEP_FILE = engine\CMakeFiles\engine.dir\src\main.c.obj.d
-  FLAGS = -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview
+  FLAGS = -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -Wall -Wpedantic
   INCLUDES = -ID:/Dev/c++/games/first-game/engine/include
   OBJECT_DIR = engine\CMakeFiles\engine.dir
   OBJECT_FILE_DIR = engine\CMakeFiles\engine.dir\src
@@ -227,8 +228,9 @@ build engine/install/strip: phony engine/CMakeFiles/install/strip.util
 build cmake_object_order_depends_target_game: phony || cmake_object_order_depends_target_engine
 
 build game/CMakeFiles/game.dir/src/main.c.obj: C_COMPILER__game_unscanned_Debug D$:/Dev/c++/games/first-game/game/src/main.c || cmake_object_order_depends_target_game
+  DEFINES = -D_CRT_SECURE_NO_WARNINGS
   DEP_FILE = game\CMakeFiles\game.dir\src\main.c.obj.d
-  FLAGS = -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview
+  FLAGS = -O0 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -Wall -Wpedantic
   INCLUDES = -ID:/Dev/c++/games/first-game/game/include -ID:/Dev/c++/games/first-game/engine/interface
   OBJECT_DIR = game\CMakeFiles\game.dir
   OBJECT_FILE_DIR = game\CMakeFiles\game.dir\src
