@@ -1,6 +1,9 @@
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
+#include <gl/gl.h>
 
-void run()
+#define DLL_EXPORT __declspec(dllexport)
+
+extern DLL_EXPORT void EX_Run(void)
 {
     GLFWwindow* window;
 

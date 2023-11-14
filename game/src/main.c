@@ -3,9 +3,8 @@
 
 int main(void)
 {
-    run();
+    InitEngine();
+    Run();
 
-    printf("HELLO WORLDAOJSHDH!");
-    scanf("");
     return 0;
 }

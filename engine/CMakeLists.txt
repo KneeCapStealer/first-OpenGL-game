@@ -2,18 +2,15 @@ project(engine)
 
 # Source files
 file(GLOB_RECURSE SOURCES
-    RELATIVE ${PROJECT_SOURCE_DIR}
+    RELATIVE ${engine_SOURCE_DIR}
     src/*.c
 )
 
-message(ENGINE_SOURCES = [${SOURCES}])
+add_library(engine_dll SHARED ${SOURCES})
+target_include_directories(engine_dll PRIVATE include INTERFACE include/GLFW)
 
-# Make library
-add_library(engine STATIC ${SOURCES})
-target_include_directories(engine PRIVATE include INTERFACE interface)
+target_link_libraries(engine_dll ${PROJECT_SOURCE_DIR}/lib/glfw3.lib)
+target_link_libraries(engine_dll ${PROJECT_SOURCE_DIR}/lib/glad.lib)
+target_link_libraries(engine_dll opengl32)
 
-# Link GLFW
-target_link_libraries(engine ${engine_SOURCE_DIR}/lib/glfw3dll.lib)
-target_link_libraries(engine opengl32)
-
-install(TARGETS engine LIBRARY DESTINATION lib)
+add_subdirectory(interface)

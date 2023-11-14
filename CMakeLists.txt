@@ -5,16 +5,16 @@ project(first_game)
 # Compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(CREATE_LINK
-  "${CMAKE_BINARY_DIR}/compile_commands.json"
-  "${CMAKE_SOURCE_DIR}/compile_commands.json"
-  SYMBOLIC
+    "${CMAKE_BINARY_DIR}/compile_commands.json"
+    "${CMAKE_SOURCE_DIR}/compile_commands.json"
+    SYMBOLIC
 )
 
 # Compiler options and preprocessor defines
 if (MSVC)
     add_compile_options(/W4)
 else()
-    add_compile_options(-Wall -Wpedantic)
+    add_compile_options(-Wall -Wpedantic -Werror)
 endif()
 
 # dont suggest '_s' functions
@@ -22,3 +22,5 @@ add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 
 add_subdirectory(engine)
 add_subdirectory(game)
+
+
