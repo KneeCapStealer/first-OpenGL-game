@@ -6,5 +6,5 @@ file(GLOB_RECURSE LOAD_SOURCES
 )
 
 add_library(engine_loader STATIC ${LOAD_SOURCES})
-target_include_directories(engine_loader PUBLIC headers)
+target_include_directories(engine_loader PUBLIC interface)
 target_link_libraries(engine_loader engine_dll)

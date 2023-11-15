@@ -18,21 +18,10 @@
 // hotreload library
 #include "hotreloading.h"
 
-GLenum InitEngine(void)
+void InitEngine(void)
 {
     puts("Starting engine");
     HotReload();
-
-    return EXIT_SUCCESS;
-}
-
-void ExitEngine(void)
-{
-    if (engineDLL)
-    {
-        if (!FreeLibrary(engineDLL))
-            fputs("Couldn't free engine_dll.dll", stderr);
-    }
 }
 
 void Run(void)

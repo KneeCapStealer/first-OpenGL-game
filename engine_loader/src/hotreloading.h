@@ -1,6 +1,7 @@
 #pragma once
 
 // std lib
+#include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,27 +14,30 @@
 // must be beneath windows.h
 #include <libloaderapi.h>
 #include <minwindef.h>
+#include <synchapi.h>
 #include <winbase.h>
 // ------ library globals ------ //
-static HMODULE engineDLL;
-
 typedef void (*fp_run_t)(void);
 static fp_run_t fp_run;
 
 // ------ lobrary functions ------ //
-static inline time_t GetTimestamp(const char* filename)
+static inline time_t GetTimestamp(const char* fileName)
 {
     struct stat outStat;
-    stat(filename, &outStat);
+    if (stat(fileName, &outStat) == -1)
+    {
+        fprintf(stderr, "Failed to get the timestamp of %s, errno: %d", fileName, errno);
+        return -1;
+    }
     return outStat.st_mtime; // modified time
 }
 
-inline HMODULE LoadDLL(const char* filename)
+inline HMODULE LoadDLL(const char* fileName)
 {
-    HMODULE dll = LoadLibrary(filename);
+    HMODULE dll = LoadLibrary(fileName);
     if (!dll)
     {
-        fprintf(stderr, "Failed to load library %s", filename);
+        fprintf(stderr, "Failed to load library %s", fileName);
         return NULL;
     }
 
@@ -53,8 +57,8 @@ static inline void LoadFunctions(HMODULE dll) { fp_run = (fp_run_t)GetProcAddres
 
 static inline void HotReload(void)
 {
-    static time_t lastDllTime;
-    static HMODULE engineDLL;
+    static time_t lastDllTime = 0;
+    static HMODULE engineDLL = NULL;
 
     time_t currentDllTime = GetTimestamp("engine_dll.dll");
     if (currentDllTime != lastDllTime)
@@ -67,8 +71,13 @@ static inline void HotReload(void)
             engineDLL = NULL;
         }
 
-        CopyFile
-            puts("Copied engine_dll.dll into engine_dll_load.dll");
+        if (!CopyFile("engine_dll.dll", "engine_dll_load.dll", FALSE))
+        {
+            fputs("Failed to load engine_dll.dll into engine_dll_load.dll", stderr);
+            Sleep(10);
+        }
+
+        puts("Copied engine_dll.dll into engine_dll_load.dll");
 
         engineDLL = LoadDLL("engine_dll_load.dll");
         LoadFunctions(engineDLL);

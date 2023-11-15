@@ -54,15 +54,3 @@ DLL_EXPORT char* ReadFile(const char* fileName)
 
     return charBuf;
 }
-
-DLL_EXPORT bool CopyFile(const char* fileName, const char* copiedName)
-{
-    const char* data = ReadFile(fileName);
-    if (!data)
-        return false;
-
-    if (!WriteFile(data, copiedName))
-        return false;
-
-    return true;
-}
