@@ -7,11 +7,13 @@
 
 // outside includes
 #include <sys/stat.h>
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 // must be beneath windows.h
 #include <libloaderapi.h>
 #include <minwindef.h>
+#include <winbase.h>
 // ------ library globals ------ //
 static HMODULE engineDLL;
 
@@ -47,7 +49,7 @@ inline bool FreeDLL(HMODULE dll)
     return (bool)result;
 }
 
-inline void LoadFunctions(void) {}
+static inline void LoadFunctions(HMODULE dll) { fp_run = (fp_run_t)GetProcAddress(dll, "EX_Run"); }
 
 static inline void HotReload(void)
 {
@@ -65,13 +67,11 @@ static inline void HotReload(void)
             engineDLL = NULL;
         }
 
-        // TODO: Copy the engine_dll.dll file into a new dll file so we can run and build at the
-        // same time
-
-        puts("Copied engine_dll.dll into engine_dll_load.dll");
+        CopyFile
+            puts("Copied engine_dll.dll into engine_dll_load.dll");
 
         engineDLL = LoadDLL("engine_dll_load.dll");
-        LoadFunctions();
+        LoadFunctions(engineDLL);
 
         lastDllTime = currentDllTime;
     }

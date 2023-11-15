@@ -22,5 +22,4 @@ add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 
 add_subdirectory(engine)
 add_subdirectory(game)
-
-
+add_subdirectory(engine_loader)
